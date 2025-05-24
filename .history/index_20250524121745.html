@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@700" rel="stylesheet">
+  <title>Frontend Mentor | [pricing-component-with-toggle-master]</title>
+  <style>
+    :root {
+
+      --linear-gradient: linear-gradient(to bottom right, hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+
+      --clr-pri: hsl(240, 78%, 98%);
+      --clr-pri-acc: hsl(234, 14%, 74%);
+      --clr-sec: hsl(233, 13%, 49%);
+      --clr-sec-acc: hsl(232, 13%, 33%);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .visually-hidden:not(:focus):not(:active) {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+      height: 1vh;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+
+    body {
+      font-size: 0.95rem;
+      font-weight: 700;
+      width: 100vw;
+      height: 150vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+
+    .container {
+      width: 375px;
+      height: 100vh;
+      font-family: "Montserrat", sans-serif;
+
+    }
+
+    .pricing-header {
+      font-size: 1.5rem;
+    }
+
+    .pricing-header h1 {
+      color: var(--clr-sec);
+
+    }
+
+    .toggle-box {
+      width: 100%;
+      height: 100%;
+    }
+
+    .toggle-container {
+      width: 100px;
+      height: 25px;
+      position: relative;
+      background: var(--linear-gradient);
+      padding: 10px;
+      border-radius: 3rem;
+      border: none;
+      box-shadow: inset 0 0  0 0 rgba(0, 0, 0, 0.7);
+    }
+
+    .toggle-slider {
+      position: absolute;
+      border-radius: 50%;
+      left: 10px;
+      top: 5px;
+      background: white;
+      height: 20px;
+      aspect-ratio: 1;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+    input#price-annual:checked ~ label{
+      transform: ;
+    }
+
+    .pricing {}
+
+
+    .content-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 150vh;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 90%;
+      gap: 20px;
+      height: 100%;
+    }
+
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      border-radius: .6rem;
+
+      box-shadow: 0 0 .625rem .125rem rgba(0, 0, 0, 0.15);
+      height: 30%;
+    }
+
+    .card-container:nth-child(2) {
+      background: var(--linear-gradient);
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      height: 85%;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .card>* {
+      width: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rows-head {
+      height: 35%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rows-head p {
+      font-size: 1.2rem;
+
+      color: var(--clr-sec);
+    }
+
+    .rows-head h1 {
+      font-size: 4rem;
+      color: var(--clr-sec-acc);
+      display: flex;
+      align-items: center;
+    }
+
+    .rows-head h1 span {
+      font-size: 2rem;
+      color: var(--clr-sec-acc);
+      margin-right: 2%;
+    }
+
+    .rows {
+      height: 15%;
+      border: 1px solid var(--clr-pri-acc);
+      border-left: none;
+      border-right: none;
+      color: var(--clr-sec);
+      font-size: 1.2rem;
+    }
+
+    .rows:nth-child(3) {
+      border: none;
+    }
+
+    .rows-button {
+      height: 25%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: .5rem;
+      border: none;
+      padding: 1.25rem 2.5rem;
+      text-transform: uppercase;
+      color: white;
+      background: var(--linear-gradient);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-top: 10%;
+    }
+
+    .card-container:nth-child(2) .rows,
+    .card-container:nth-child(2) .rows-head,
+    .card-container:nth-child(2) .rows-head h1,
+    .card-container:nth-child(2) .rows-head h1 span {
+      color: white;
+    }
+
+    .card-container:nth-child(2) .rows-head p {
+      color: white;
+    }
+
+    .card-container:nth-child(2) button {
+      background: white;
+      color: hsl(237, 63%, 64%);
+    }
+
+    @media(min-width:1440px) {
+      .content {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+
+
+  <div class="container">
+    <div class="pricing-header">
+      <h1>Our Pricing</h1>
+      <div class="toggle-box">
+        Annually
+        Monthly
+        <div class="toggle-container">
+          <input type="radio" class="pricing" id="price-annnual">
+          <label for="price-annual"></label>
+
+          <input type="radio" class="pricing" id="price-month">
+          <label for="price-month"></label>
+
+          <div class="toggle-slider"></div>
+        </div>
+      </div>
+      <div class="content-body">
+        <div class="content">
+          <div class="card-container">
+            <div class="card">
+              <div class="rows-head">
+                <p>Basic</p>
+                <h1> <span>&dollar;</span>
+                  19.99
+                  <i class="visually-hidden">&dollar;199.99</i>
+                </h1>
+              </div>
+              <div class="rows">500 GB Storage</div>
+              <div class="rows">2 Users Allowed</div>
+              <div class="rows">Send up to 3 GB</div>
+              <div class="rows-button"><button>Learn More</button></div>
+            </div>
+          </div>
+
+          <div class="card-container">
+            <div class="card">
+              <div class="rows-head">
+                <p>Professional</p>
+                <h1> <span>&dollar;</span>24.99
+                  <i class="visually-hidden">&dollar;249.99</i>
+                </h1>
+              </div>
+              <div class="rows">1 TB Storage</div>
+              <div class="rows">5 Users Allowed</div>
+              <div class="rows">Send up to 10 GB</div>
+              <div class="rows-button"><button>Learn More</button></div>
+            </div>
+          </div>
+          <div class="card-container">
+            <div class="card">
+              <div class="rows-head">
+                <p>Master</p>
+                <h1> <span>&dollar;</span>39.99
+                  <i class="visually-hidden">&dollar;399.99</i>
+                </h1>
+              </div>
+              <div class="rows">2 TB Storage</div>
+              <div class="rows">10 Users Allowed</div>
+              <div class="rows">Send up to 20 GB</div>
+              <div class="rows-button"><button>Learn More</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
